@@ -1,0 +1,69 @@
+package com.blog.controller;
+
+import ch.qos.logback.core.util.StringUtil;
+import com.blog.pojo.Result;
+import com.blog.pojo.User;
+import com.blog.server.UserServer;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLIntegrityConstraintViolationException;
+
+@RestController
+@Slf4j
+@RequestMapping("/users")
+@CrossOrigin(origins = "*")
+public class UserController {
+    @Autowired
+    private UserServer userServer;
+
+    /**
+     * 登录操作
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("/login")
+    public Result login(String username, String password) {
+        log.info("用户名：{} 密码：{}", username, password);
+        String token = userServer.login(username, password);
+        if (StringUtil.isNullOrEmpty(token)) {
+            return Result.fail("登录失败,请检查用户名或密码");
+        } else return Result.success("登陆成功", token);
+    }
+
+
+    /**
+     * 注册
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("/register")
+    public Result register(String username, String password) {
+        log.info("用户注册--用户名为：{},密码为：{}", username, password);
+        try {
+            userServer.register(username, password);
+            return Result.success("注册成功", null);
+        } catch (Exception e) {
+            if (e instanceof SQLIntegrityConstraintViolationException)
+                return Result.fail("当前用户名已存在");
+            else return Result.error();
+        }
+    }
+
+
+    /**
+     * 获取当前用户信息
+     * @return
+     */
+    @GetMapping
+    public Result getUser() {
+        log.info("获取当前用户信息");
+        User user = userServer.getUser();
+        return Result.success(user);
+    }
+}
