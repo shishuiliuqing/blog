@@ -20,7 +20,9 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
-
-
+#事务日志
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
 
 
