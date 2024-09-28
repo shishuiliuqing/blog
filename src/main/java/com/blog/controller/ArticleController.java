@@ -13,6 +13,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/articles")
+@CrossOrigin(origins = "*")
 public class ArticleController {
 
     @Autowired
@@ -57,5 +58,17 @@ public class ArticleController {
     public Result addArticle(MultipartFile cover, String title, String content) {
         articleServer.addArticle(cover, title, content);
         return Result.success();
+    }
+
+    /**
+     * 根据用户名获取文章
+     *
+     * @param username
+     * @return
+     */
+    @GetMapping("/{username}")
+    public Result getByUsername(String username) {
+        List<Article> articles = articleServer.getByUsername(username);
+        return Result.success(articles);
     }
 }

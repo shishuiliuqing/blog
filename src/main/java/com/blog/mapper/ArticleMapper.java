@@ -12,28 +12,40 @@ public interface ArticleMapper {
 
     /**
      * 添加文章
+     *
      * @param cover
      * @param title
      * @param content
+     * @param owner
      */
-    @Insert("insert into article (cover, title, view_count, like_count, comment_count, content, pub_date, upd_date) VALUES " +
-            "(#{cover},#{title},0,0,0,#{content},now(),now())")
-    void addArticle(String cover, String title, String content);
+    @Insert("insert into article (cover, title, view_count, like_count, comment_count, content, pub_date, upd_date,owner) VALUES " +
+            "(#{cover},#{title},0,0,0,#{content},now(),now(),#{owner})")
+    void addArticle(String cover, String title, String content, String owner);
 
 
     /**
      * 根据id获取文章
+     *
      * @param id
      * @return
      */
-    @Select("select id, cover, title, view_count, like_count, comment_count, content, pub_date, upd_date from blog.article where id = #{id}")
+    @Select("select id, cover, title, view_count, like_count, comment_count, content, pub_date, upd_date ,owner from blog.article where id = #{id}")
     Article getById(Integer id);
 
 
     /**
      * 获取所有文章
+     *
      * @return
      */
-    @Select("select id, cover, title, view_count, like_count, comment_count, content, pub_date, upd_date from blog.article")
+    @Select("select id, cover, title, view_count, like_count, comment_count, content, pub_date, upd_date , owner from blog.article")
     List<Article> getAll();
+
+    /**
+     * 根据用户名获取文章
+     * @param owner
+     * @return
+     */
+    @Select("select id, cover, title, view_count, like_count, comment_count, content, pub_date, upd_date, owner from article where owner = #{owner}")
+    List<Article> getArticleByOwner(String owner);
 }

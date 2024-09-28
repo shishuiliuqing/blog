@@ -19,4 +19,5 @@ public class Article {
     private String content;
     private String pubDate;
     private String updDate;
+    private String owner;
 }

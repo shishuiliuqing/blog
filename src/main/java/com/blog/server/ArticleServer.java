@@ -28,4 +28,11 @@ public interface ArticleServer {
      * @return
      */
     List<Article> getAll();
+
+    /**
+     * 根据用户名获取文章
+     * @param username
+     * @return
+     */
+    List<Article> getByUsername(String username);
 }

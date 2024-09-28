@@ -2,6 +2,7 @@ package com.blog.server.impl;
 
 import com.blog.mapper.ArticleMapper;
 import com.blog.pojo.Article;
+import com.blog.pojo.BaseUserInfo;
 import com.blog.server.ArticleServer;
 import com.blog.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class ArticleServerImpl implements ArticleServer {
     @Override
     public void addArticle(MultipartFile cover, String title, String content) {
         try {
-            articleMapper.addArticle(imageUtil.upload(cover), title, content);
+            String owner = BaseUserInfo.get("username");
+            articleMapper.addArticle(imageUtil.upload(cover), title, content, owner);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,8 +49,22 @@ public class ArticleServerImpl implements ArticleServer {
         return article;
     }
 
+    /**
+     * 获取所有文章
+     * @return
+     */
     @Override
     public List<Article> getAll() {
         return articleMapper.getAll();
+    }
+
+    /**
+     * 根据用户名获取文章
+     * @param username
+     * @return
+     */
+    @Override
+    public List<Article> getByUsername(String username) {
+        return articleMapper.getArticleByOwner(username);
     }
 }
