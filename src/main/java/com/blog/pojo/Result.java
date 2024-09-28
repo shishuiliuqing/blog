@@ -17,10 +17,18 @@ public class Result<T> {
     }
 
     public static <T> Result success() {
-        return new Result(1,"操作成功",null);
+        return new Result(1, "操作成功", null);
+    }
+
+    public static <T> Result success(String message, T data) {
+        return new Result(1, message, data);
     }
 
     public static Result fail(String message) {
         return new Result(0, message, null);
+    }
+
+    public static Result error() {
+        return new Result(0, "操作异常", null);
     }
 }
