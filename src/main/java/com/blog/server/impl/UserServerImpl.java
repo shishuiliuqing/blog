@@ -4,10 +4,13 @@ import com.blog.mapper.UserMapper;
 import com.blog.pojo.BaseUserInfo;
 import com.blog.pojo.User;
 import com.blog.server.UserServer;
+import com.blog.utils.ImageUtil;
 import com.blog.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
 
 @Service
 public class UserServerImpl implements UserServer {
@@ -15,17 +18,21 @@ public class UserServerImpl implements UserServer {
     private UserMapper userMapper;
 
     @Override
-    public String login(String username, String password) {
-        Integer result = userMapper.getIDByUsernameAndPassword(username, password);
+    public String login(String eMail, String password) {
+        Integer result = userMapper.getIDByEMailAndPassword(eMail, password);
         if (result != null) {
-            return JWTUtil.generateJWT(result, username);
+            return JWTUtil.generateJWT(result, eMail);
         } else return null;
     }
 
     @Transactional
     @Override
-    public void register(String username, String password) {
-        userMapper.insertUserLogin(username, password);
+    public void register(String username, String password, String eMail) throws IOException {
+        userMapper.insertUserLogin(username, password, eMail);
+        Integer id = userMapper.getIdByUsername(username);
+        String url = ImageUtil.URL + "/default.png";
+        User user = new User(id, username, 0, 0, url, null);
+        userMapper.insertUser(user);
     }
 
     @Override

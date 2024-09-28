@@ -17,7 +17,7 @@ public class MyConfig implements WebMvcConfigurer {
         try {
             String imageAddress = file.getCanonicalPath().toString();
             //映射图片保存地址
-            registry.addResourceHandler("/images/**").addResourceLocations("file:" + imageAddress + "\\");
+            registry.addResourceHandler("/images/**").addResourceLocations("FILE:" + imageAddress + "\\");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

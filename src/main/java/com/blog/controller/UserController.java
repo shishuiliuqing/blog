@@ -21,14 +21,14 @@ public class UserController {
     /**
      * 登录操作
      *
-     * @param username
+     * @param eMail
      * @param password
      * @return
      */
     @PostMapping("/login")
-    public Result login(String username, String password) {
-        log.info("用户名：{} 密码：{}", username, password);
-        String token = userServer.login(username, password);
+    public Result login(String eMail, String password) {
+        log.info("用户名：{} 密码：{}", eMail, password);
+        String token = userServer.login(eMail, password);
         if (StringUtil.isNullOrEmpty(token)) {
             return Result.fail("登录失败,请检查用户名或密码");
         } else return Result.success("登陆成功", token);
@@ -43,10 +43,10 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public Result register(String username, String password) {
-        log.info("用户注册--用户名为：{},密码为：{}", username, password);
+    public Result register(String username, String password, String eMail) {
+        log.info("用户注册--用户名为：{},密码为：{},邮箱为：{}", username, password, eMail);
         try {
-            userServer.register(username, password);
+            userServer.register(username, password, eMail);
             return Result.success("注册成功", null);
         } catch (Exception e) {
             if (e instanceof SQLIntegrityConstraintViolationException)
@@ -58,6 +58,7 @@ public class UserController {
 
     /**
      * 获取当前用户信息
+     *
      * @return
      */
     @GetMapping
