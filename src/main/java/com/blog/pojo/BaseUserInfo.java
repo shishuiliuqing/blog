@@ -28,4 +28,14 @@ public class BaseUserInfo {
         Map<String, String> map = getLocalMap();
         return map.get(key);
     }
+
+    //根据token获取用户id
+    public static Integer getId() {
+        return Integer.parseInt(get("id"));
+    }
+
+    //根据token获取用户名
+    public static String getUsername() {
+        return get("username");
+    }
 }

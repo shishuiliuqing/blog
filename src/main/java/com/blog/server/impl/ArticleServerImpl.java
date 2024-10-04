@@ -30,7 +30,7 @@ public class ArticleServerImpl implements ArticleServer {
     @Override
     public void addArticle(MultipartFile cover, String title, String content) {
         try {
-            String owner = BaseUserInfo.get("username");
+            String owner = BaseUserInfo.getUsername();
             articleMapper.addArticle(imageUtil.upload(cover), title, content, owner);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -51,6 +51,7 @@ public class ArticleServerImpl implements ArticleServer {
 
     /**
      * 获取所有文章
+     *
      * @return
      */
     @Override
@@ -60,6 +61,7 @@ public class ArticleServerImpl implements ArticleServer {
 
     /**
      * 根据用户名获取文章
+     *
      * @param username
      * @return
      */

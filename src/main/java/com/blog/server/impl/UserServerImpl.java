@@ -37,7 +37,7 @@ public class UserServerImpl implements UserServer {
 
     @Override
     public User getUser() {
-        Integer id = Integer.parseInt(BaseUserInfo.get("id"));
+        Integer id = BaseUserInfo.getId();
         User user = userMapper.getUserById(id);
         user.setLv();
         return user;
