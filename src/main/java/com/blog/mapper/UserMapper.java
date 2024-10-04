@@ -26,7 +26,7 @@ public interface UserMapper {
      * @param eMail
      */
     @Insert("insert into user_login (username, password,e_mail) value (#{username},#{password},#{eMail})")
-    void insertUserLogin(String username, String password,String eMail);
+    void insertUserLogin(String username, String password, String eMail);
 
     /**
      * 根据id获取用户信息
@@ -45,9 +45,19 @@ public interface UserMapper {
 
     /**
      * 根据用户名寻找用户id
+     *
      * @param username
      * @return
      */
     @Select("select id from user_login where username = #{username}")
     Integer getIdByUsername(String username);
+
+    /**
+     * 根据id寻找用户名
+     *
+     * @param result
+     * @return
+     */
+    @Select("select username from user_login where id = #{result}")
+    String getUsernameById(Integer result);
 }

@@ -66,7 +66,7 @@ public class ArticleController {
      * @param username
      * @return
      */
-    @GetMapping("/{username}")
+    @GetMapping("/getByUsername")
     public Result getByUsername(String username) {
         List<Article> articles = articleServer.getByUsername(username);
         return Result.success(articles);
