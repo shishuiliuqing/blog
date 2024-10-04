@@ -1,0 +1,48 @@
+-----------------------------------2024/10/04   23:05---------------------------------
+create database blog;
+
+create table article
+(
+    id            int primary key auto_increment not null,
+    cover         varchar(100)                   not null,
+    title         varchar(20)                    not null,
+    view_count    int                            not null default 0,
+    like_count    int                            not null default 0,
+    comment_count int                            not null default 0,
+    content       varchar(1000)                  not null default '',
+    pub_date      datetime                       not null,
+    upd_date      datetime                       not null
+);
+
+alter table blog.article
+    modify column pub_date date;
+alter table blog.article
+    modify column upd_date date;
+alter table blog.article
+    add column owner varchar(20) not null;
+
+create table user_login
+(
+    id       int primary key auto_increment not null,
+    username varchar(20) unique             not null,
+    password varchar(20)                    not null
+);
+
+create table user
+(
+    id              int primary key    not null,
+    username        varchar(20) unique not null,
+    experience      int                not null default 0,
+    profile_picture varchar(100)       not null,
+    signature       varchar(200)                default null
+);
+
+alter table user_login
+    add e_mail varchar(50);
+
+create table user_like
+(
+    id int primary key not null auto_increment,
+    uid int not null ,
+    aid int not null
+) ;
