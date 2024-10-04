@@ -3,10 +3,7 @@ package com.blog.controller;
 import com.blog.pojo.Result;
 import com.blog.server.LikeSever;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/likes")
@@ -26,5 +23,22 @@ public class LikeController {
         boolean flag = likeSever.getStatus(aid);
         if (flag) return Result.success("LIKED", null);
         else return Result.success("NOT_LIKE", null);
+    }
+
+    /**
+     * 根据文章id进行点赞或取消点赞
+     * @param aid
+     * @return
+     */
+    @PostMapping
+    public Result likeByAid(Integer aid) {
+        if (likeSever.getStatus(aid)) {
+            likeSever.subLike(aid);
+            return Result.success("已取消点赞",null);
+        }
+        else {
+            likeSever.addLike(aid);
+            return Result.success("点赞成功", null);
+        }
     }
 }
