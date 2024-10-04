@@ -20,8 +20,9 @@ public class UserServerImpl implements UserServer {
     @Override
     public String login(String eMail, String password) {
         Integer result = userMapper.getIDByEMailAndPassword(eMail, password);
+        String username = userMapper.getUsernameById(result);
         if (result != null) {
-            return JWTUtil.generateJWT(result, eMail);
+            return JWTUtil.generateJWT(result, username);
         } else return null;
     }
 

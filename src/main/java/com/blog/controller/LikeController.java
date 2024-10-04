@@ -2,9 +2,11 @@ package com.blog.controller;
 
 import com.blog.pojo.Result;
 import com.blog.server.LikeSever;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/likes")
 public class LikeController {
@@ -20,6 +22,7 @@ public class LikeController {
      */
     @GetMapping("/{aid}")
     public Result likeStatus(@PathVariable Integer aid) {
+        log.info("文章id为：{}", aid);
         boolean flag = likeSever.getStatus(aid);
         if (flag) return Result.success("LIKED", null);
         else return Result.success("NOT_LIKE", null);
@@ -27,16 +30,17 @@ public class LikeController {
 
     /**
      * 根据文章id进行点赞或取消点赞
+     *
      * @param aid
      * @return
      */
     @PostMapping
     public Result likeByAid(Integer aid) {
+        log.info("文章id为：{}", aid);
         if (likeSever.getStatus(aid)) {
             likeSever.subLike(aid);
-            return Result.success("已取消点赞",null);
-        }
-        else {
+            return Result.success("已取消点赞", null);
+        } else {
             likeSever.addLike(aid);
             return Result.success("点赞成功", null);
         }
