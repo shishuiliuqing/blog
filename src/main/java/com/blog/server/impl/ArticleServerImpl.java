@@ -25,13 +25,13 @@ public class ArticleServerImpl implements ArticleServer {
      *
      * @param cover
      * @param title
-     * @param content
+     * @param introduce
      */
     @Override
-    public void addArticle(MultipartFile cover, String title, String content) {
+    public void addArticle(MultipartFile cover, String title, String introduce) {
         try {
             String owner = BaseUserInfo.getUsername();
-            articleMapper.addArticle(imageUtil.upload(cover), title, content, owner);
+            articleMapper.addArticle(imageUtil.upload(cover), title, introduce, owner);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

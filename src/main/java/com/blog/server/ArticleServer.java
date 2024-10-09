@@ -10,9 +10,9 @@ public interface ArticleServer {
      * 添加文章
      * @param cover
      * @param title
-     * @param content
+     * @param introduce
      */
-    void addArticle(MultipartFile cover, String title, String content);
+    void addArticle(MultipartFile cover, String title, String introduce);
 
 
     /**

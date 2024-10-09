@@ -46,3 +46,10 @@ create table user_like
     uid int not null ,
     aid int not null
 ) ;
+
+-------------------------------------------2024/10/09 19:03-----------------------------------------
+alter table article change column content introduce varchar(200);
+create table article_content (
+   id int primary key not null,
+   content varchar(2000)
+) ;

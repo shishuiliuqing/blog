@@ -51,12 +51,12 @@ public class ArticleController {
      *
      * @param cover
      * @param title
-     * @param content
+     * @param introduce
      * @return
      */
     @PostMapping
-    public Result addArticle(MultipartFile cover, String title, String content) {
-        articleServer.addArticle(cover, title, content);
+    public Result addArticle(MultipartFile cover, String title, String introduce) {
+        articleServer.addArticle(cover, title, introduce);
         return Result.success();
     }
 
