@@ -25,7 +25,7 @@ public class ArticleController {
      * @param id
      * @return
      */
-    @GetMapping("/{id}")
+    @GetMapping("/getByAid/{id}")
     public Result getById(@PathVariable Integer id) {
         log.info("文章ID：{}", id);
         Article article = articleServer.getById(id);
