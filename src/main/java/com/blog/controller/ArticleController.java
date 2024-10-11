@@ -38,7 +38,7 @@ public class ArticleController {
      *
      * @return
      */
-    @GetMapping
+    @GetMapping("/getAll")
     public Result getAll() {
         log.info("获取全部文章");
         List<Article> articles = articleServer.getAll();
