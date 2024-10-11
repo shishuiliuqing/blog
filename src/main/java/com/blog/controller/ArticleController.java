@@ -57,7 +57,7 @@ public class ArticleController {
     @PostMapping
     public Result addArticle(MultipartFile cover, String title, String introduce) {
         articleServer.addArticle(cover, title, introduce);
-        return Result.success();
+        return Result.success("发布成功",null);
     }
 
     /**
