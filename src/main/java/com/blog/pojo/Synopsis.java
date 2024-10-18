@@ -14,7 +14,7 @@ public class Synopsis {
     private Integer viewCount;
     private Integer likeCount;
     private Integer commentCount;
-    private String content;
+    private String induce;
     private String pubDate;
     private String updDate;
     private String owner;
