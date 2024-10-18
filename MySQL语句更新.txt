@@ -48,9 +48,10 @@ create table user_like
 ) ;
 
 -------------------------------------------2024/10/18 22:08-----------------------------------------
-alter table synopsis change column content introduce varchar(2000);
+alter table article change column content introduce varchar(2000) default '暂无简介';
 create table article_content (
    id int primary key not null,
    content longtext
 ) ;
+
 rename table article to synopsis;
