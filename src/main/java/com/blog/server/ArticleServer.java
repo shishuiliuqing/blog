@@ -1,5 +1,6 @@
 package com.blog.server;
 
+import com.blog.pojo.Article;
 import com.blog.pojo.Synopsis;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,15 +13,16 @@ public interface ArticleServer {
      * @param title
      * @param introduce
      */
-    void addArticle(MultipartFile cover, String title, String introduce);
+    void addArticle(MultipartFile cover, String title, String introduce,String content);
 
 
     /**
      * 根据id获取文章
+     *
      * @param id
      * @return
      */
-    Synopsis getById(Integer id);
+    Article getById(Integer id);
 
 
     /**

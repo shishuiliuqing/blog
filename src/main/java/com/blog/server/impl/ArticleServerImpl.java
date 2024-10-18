@@ -1,12 +1,14 @@
 package com.blog.server.impl;
 
 import com.blog.mapper.ArticleMapper;
+import com.blog.pojo.Article;
 import com.blog.pojo.Synopsis;
 import com.blog.pojo.BaseUserInfo;
 import com.blog.server.ArticleServer;
 import com.blog.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,12 +28,16 @@ public class ArticleServerImpl implements ArticleServer {
      * @param cover
      * @param title
      * @param introduce
+     * @param content
      */
+    @Transactional
     @Override
-    public void addArticle(MultipartFile cover, String title, String introduce) {
+    public void addArticle(MultipartFile cover, String title, String introduce, String content) {
         try {
             String owner = BaseUserInfo.getUsername();
-            articleMapper.addArticle(imageUtil.upload(cover), title, introduce, owner);
+            articleMapper.addSynopsis(imageUtil.upload(cover), title, introduce, owner);
+            Integer id = articleMapper.getNewId(owner);
+            articleMapper.addContent(id, content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -43,10 +49,13 @@ public class ArticleServerImpl implements ArticleServer {
      * @param id
      * @return
      */
+    @Transactional
     @Override
-    public Synopsis getById(Integer id) {
+    public Article getById(Integer id) {
         Synopsis synopsis = articleMapper.getById(id);
-        return synopsis;
+        String content = articleMapper.getContentById(id);
+        Article article = new Article(synopsis, content);
+        return article;
     }
 
     /**

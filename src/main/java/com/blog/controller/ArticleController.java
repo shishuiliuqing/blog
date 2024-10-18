@@ -1,5 +1,6 @@
 package com.blog.controller;
 
+import com.blog.pojo.Article;
 import com.blog.pojo.Synopsis;
 import com.blog.pojo.Result;
 import com.blog.server.ArticleServer;
@@ -28,8 +29,8 @@ public class ArticleController {
     @GetMapping("/getByAid/{id}")
     public Result getById(@PathVariable Integer id) {
         log.info("文章ID：{}", id);
-        Synopsis synopsis = articleServer.getById(id);
-        return Result.success(synopsis);
+        Article article = articleServer.getById(id);
+        return Result.success(article);
     }
 
 
@@ -55,8 +56,8 @@ public class ArticleController {
      * @return
      */
     @PostMapping
-    public Result addArticle(MultipartFile cover, String title, String introduce) {
-        articleServer.addArticle(cover, title, introduce);
+    public Result addArticle(MultipartFile cover, String title, String introduce,String content) {
+        articleServer.addArticle(cover, title, introduce,content);
         return Result.success("发布成功",null);
     }
 
