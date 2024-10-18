@@ -47,9 +47,9 @@ create table user_like
     aid int not null
 ) ;
 
--------------------------------------------2024/10/09 19:03-----------------------------------------
-alter table article change column content introduce varchar(200);
+-------------------------------------------2024/10/18 22:08-----------------------------------------
+alter table article change column content introduce varchar(2000);
 create table article_content (
    id int primary key not null,
-   content varchar(2000)
+   content longtext
 ) ;
