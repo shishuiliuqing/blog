@@ -1,7 +1,7 @@
 package com.blog.server.impl;
 
 import com.blog.mapper.ArticleMapper;
-import com.blog.pojo.Article;
+import com.blog.pojo.Synopsis;
 import com.blog.pojo.BaseUserInfo;
 import com.blog.server.ArticleServer;
 import com.blog.utils.ImageUtil;
@@ -44,9 +44,9 @@ public class ArticleServerImpl implements ArticleServer {
      * @return
      */
     @Override
-    public Article getById(Integer id) {
-        Article article = articleMapper.getById(id);
-        return article;
+    public Synopsis getById(Integer id) {
+        Synopsis synopsis = articleMapper.getById(id);
+        return synopsis;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ArticleServerImpl implements ArticleServer {
      * @return
      */
     @Override
-    public List<Article> getAll() {
+    public List<Synopsis> getAll() {
         return articleMapper.getAll();
     }
 
@@ -66,7 +66,7 @@ public class ArticleServerImpl implements ArticleServer {
      * @return
      */
     @Override
-    public List<Article> getByUsername(String username) {
+    public List<Synopsis> getByUsername(String username) {
         return articleMapper.getArticleByOwner(username);
     }
 }

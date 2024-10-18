@@ -1,6 +1,6 @@
 package com.blog.mapper;
 
-import com.blog.pojo.Article;
+import com.blog.pojo.Synopsis;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -30,7 +30,7 @@ public interface ArticleMapper {
      * @return
      */
     @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date ,owner from blog.article where id = #{id}")
-    Article getById(Integer id);
+    Synopsis getById(Integer id);
 
 
     /**
@@ -39,7 +39,7 @@ public interface ArticleMapper {
      * @return
      */
     @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date , owner from blog.article")
-    List<Article> getAll();
+    List<Synopsis> getAll();
 
     /**
      * 根据用户名获取文章
@@ -47,5 +47,5 @@ public interface ArticleMapper {
      * @return
      */
     @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date, owner from article where owner = #{owner}")
-    List<Article> getArticleByOwner(String owner);
+    List<Synopsis> getArticleByOwner(String owner);
 }

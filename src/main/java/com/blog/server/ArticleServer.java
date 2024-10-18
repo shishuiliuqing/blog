@@ -1,6 +1,6 @@
 package com.blog.server;
 
-import com.blog.pojo.Article;
+import com.blog.pojo.Synopsis;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -20,19 +20,19 @@ public interface ArticleServer {
      * @param id
      * @return
      */
-    Article getById(Integer id);
+    Synopsis getById(Integer id);
 
 
     /**
      * 获取全部文章
      * @return
      */
-    List<Article> getAll();
+    List<Synopsis> getAll();
 
     /**
      * 根据用户名获取文章
      * @param username
      * @return
      */
-    List<Article> getByUsername(String username);
+    List<Synopsis> getByUsername(String username);
 }

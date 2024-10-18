@@ -1,6 +1,6 @@
 package com.blog.controller;
 
-import com.blog.pojo.Article;
+import com.blog.pojo.Synopsis;
 import com.blog.pojo.Result;
 import com.blog.server.ArticleServer;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +28,8 @@ public class ArticleController {
     @GetMapping("/getByAid/{id}")
     public Result getById(@PathVariable Integer id) {
         log.info("文章ID：{}", id);
-        Article article = articleServer.getById(id);
-        return Result.success(article);
+        Synopsis synopsis = articleServer.getById(id);
+        return Result.success(synopsis);
     }
 
 
@@ -41,8 +41,8 @@ public class ArticleController {
     @GetMapping("/getAll")
     public Result getAll() {
         log.info("获取全部文章");
-        List<Article> articles = articleServer.getAll();
-        return Result.success(articles);
+        List<Synopsis> synopses = articleServer.getAll();
+        return Result.success(synopses);
     }
 
 
@@ -68,7 +68,7 @@ public class ArticleController {
      */
     @GetMapping("/getByUsername")
     public Result getByUsername(String username) {
-        List<Article> articles = articleServer.getByUsername(username);
-        return Result.success(articles);
+        List<Synopsis> synopses = articleServer.getByUsername(username);
+        return Result.success(synopses);
     }
 }
