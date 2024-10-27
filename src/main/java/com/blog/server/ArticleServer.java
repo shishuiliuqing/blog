@@ -7,13 +7,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface ArticleServer {
-    /**
-     * 添加文章
-     * @param cover
-     * @param title
-     * @param introduce
-     */
-    void addArticle(MultipartFile cover, String title, String introduce,String content);
+//    /**
+//     * 添加文章
+//     * @param cover
+//     * @param title
+//     * @param introduce
+//     */
+//    void addArticle(MultipartFile cover, String title, String introduce,String content);
 
 
     /**
@@ -37,4 +37,10 @@ public interface ArticleServer {
      * @return
      */
     List<Synopsis> getByUsername(String username);
+
+    /**
+     * 新建草稿
+     * @return
+     */
+    Integer createDraft();
 }

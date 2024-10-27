@@ -47,18 +47,30 @@ public class ArticleController {
     }
 
 
+//    /**
+//     * 添加文章
+//     *
+//     * @param cover
+//     * @param title
+//     * @param introduce
+//     * @return
+//     */
+//    @PostMapping
+//    public Result addArticle(MultipartFile cover, String title, String introduce,String content) {
+//        articleServer.addArticle(cover, title, introduce,content);
+//        return Result.success("发布成功",null);
+//    }
+
+
     /**
-     * 添加文章
-     *
-     * @param cover
-     * @param title
-     * @param introduce
+     * 新建草稿
      * @return
      */
-    @PostMapping
-    public Result addArticle(MultipartFile cover, String title, String introduce,String content) {
-        articleServer.addArticle(cover, title, introduce,content);
-        return Result.success("发布成功",null);
+    @PostMapping("/createDraft")
+    public Result createDraft() {
+        log.info("新建草稿");
+        Integer draftId = articleServer.createDraft();
+        return Result.success("新建成功",draftId);
     }
 
     /**
