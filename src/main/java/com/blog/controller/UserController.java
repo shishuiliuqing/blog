@@ -61,10 +61,12 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping
+    @GetMapping("/getUser")
     public Result getUser() {
         log.info("获取当前用户信息");
         User user = userServer.getUser();
         return Result.success(user);
     }
+
+
 }
