@@ -27,12 +27,14 @@ public interface ArticleServer {
 
     /**
      * 获取全部文章
+     *
      * @return
      */
     List<Synopsis> getAll();
 
     /**
      * 根据用户名获取文章
+     *
      * @param username
      * @return
      */
@@ -40,6 +42,7 @@ public interface ArticleServer {
 
     /**
      * 新建草稿
+     *
      * @return
      */
     Integer createDraft();
@@ -53,10 +56,18 @@ public interface ArticleServer {
 
     /**
      * 修改草稿
+     *
      * @param cover
      * @param title
      * @param introduce
      * @param content
      */
-    void update(Integer id,String cover, String title, String introduce, String content);
+    void update(Integer id, String cover, String title, String introduce, String content);
+
+    /**
+     * 文章发布
+     *
+     * @param id
+     */
+    void release(Integer id);
 }

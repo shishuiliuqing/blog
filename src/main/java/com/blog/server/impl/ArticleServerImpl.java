@@ -125,4 +125,9 @@ public class ArticleServerImpl implements ArticleServer {
         articleMapper.updateSynopsis(id, cover, title, introduce);
         articleMapper.updateContent(id, content);
     }
+
+    @Override
+    public void release(Integer id) {
+        articleMapper.setStatus(id);
+    }
 }

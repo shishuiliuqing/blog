@@ -105,4 +105,11 @@ public interface ArticleMapper {
      */
     @Update("update article_content set content = #{content} where id = #{id}")
     void updateContent(Integer id,String content);
+
+    /**
+     * 修改文章状态
+     * @param id
+     */
+    @Update("update synopsis set status = 1 where id = #{id}")
+    void setStatus(Integer id);
 }

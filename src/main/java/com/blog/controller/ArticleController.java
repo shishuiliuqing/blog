@@ -99,6 +99,13 @@ public class ArticleController {
         return Result.success("修改保存成功", null);
     }
 
+    @PostMapping("/release/{id}")
+    public Result release(@PathVariable Integer id){
+        log.info("发布文章ID：{}",id);
+        articleServer.release(id);
+        return Result.success("文章发布成功",null);
+    };
+
     /**
      * 根据用户名获取文章
      *
