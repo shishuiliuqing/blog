@@ -46,7 +46,7 @@ public interface ArticleMapper {
      * @param id
      * @return
      */
-    @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date ,owner from blog.synopsis where id = #{id}")
+    @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date ,owner from blog.synopsis where id = #{id} and status = 1")
     Synopsis getById(Integer id);
 
 
@@ -55,7 +55,7 @@ public interface ArticleMapper {
      *
      * @return
      */
-    @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date , owner from blog.synopsis")
+    @Select("select id, cover, title, view_count, like_count, comment_count, introduce, pub_date, upd_date , owner from blog.synopsis where status = 1")
     List<Synopsis> getAll();
 
     /**
@@ -74,4 +74,5 @@ public interface ArticleMapper {
      */
     @Select("select content from article_content where id = #{id}")
     String getContentById(Integer id);
+
 }

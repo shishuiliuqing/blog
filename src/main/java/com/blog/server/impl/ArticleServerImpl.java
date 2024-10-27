@@ -89,7 +89,7 @@ public class ArticleServerImpl implements ArticleServer {
     @Override
     public Integer createDraft() {
         String owner = BaseUserInfo.getUsername();
-        articleMapper.addSynopsis("", "", "", owner);
+        articleMapper.addSynopsis("", "未命名", "", owner);
         Integer draftId = articleMapper.getNewId(owner);
         articleMapper.addContent(draftId, "");
         return draftId;
