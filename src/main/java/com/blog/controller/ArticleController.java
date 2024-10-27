@@ -96,7 +96,7 @@ public class ArticleController {
     public Result update(Integer id, String cover, String title, String introduce, String content) {
         log.info("cover:{}\ntitle:{}\nintroduce{}\ncontent{}", cover, title, introduce, content);
         articleServer.update(id, cover, title, introduce, content);
-        return Result.success("草稿保存成功", null);
+        return Result.success("修改保存成功", null);
     }
 
     /**
