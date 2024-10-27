@@ -88,6 +88,18 @@ public class ArticleController {
     }
 
     /**
+     * 修改文章草稿
+     *
+     * @return
+     */
+    @PostMapping("/update")
+    public Result update(Integer id, String cover, String title, String introduce, String content) {
+        log.info("cover:{}\ntitle:{}\nintroduce{}\ncontent{}", cover, title, introduce, content);
+        articleServer.update(id, cover, title, introduce, content);
+        return Result.success("草稿保存成功", null);
+    }
+
+    /**
      * 根据用户名获取文章
      *
      * @param username
@@ -98,4 +110,5 @@ public class ArticleController {
         List<Synopsis> synopses = articleServer.getByUsername(username);
         return Result.success(synopses);
     }
+
 }

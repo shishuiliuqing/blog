@@ -3,7 +3,6 @@ package com.blog.server;
 import com.blog.pojo.Article;
 import com.blog.pojo.Draft;
 import com.blog.pojo.Synopsis;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -51,4 +50,13 @@ public interface ArticleServer {
      * @return
      */
     List<Draft> getDrafts();
+
+    /**
+     * 修改草稿
+     * @param cover
+     * @param title
+     * @param introduce
+     * @param content
+     */
+    void update(Integer id,String cover, String title, String introduce, String content);
 }

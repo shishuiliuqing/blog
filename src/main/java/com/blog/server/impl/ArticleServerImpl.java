@@ -105,4 +105,19 @@ public class ArticleServerImpl implements ArticleServer {
         List<Draft> drafts = articleMapper.getDrafts(owner);
         return drafts;
     }
+
+    /**
+     * 文章更新
+     *
+     * @param id
+     * @param cover
+     * @param title
+     * @param introduce
+     * @param content
+     */
+    @Override
+    public void update(Integer id, String cover, String title, String introduce, String content) {
+        articleMapper.updateSynopsis(id, cover, title, introduce);
+        articleMapper.updateContent(id, content);
+    }
 }

@@ -5,6 +5,7 @@ import com.blog.pojo.Synopsis;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -85,4 +86,23 @@ public interface ArticleMapper {
      */
     @Select("select id, title, pub_date, upd_date from synopsis where owner = #{owner} and status = 0")
     List<Draft> getDrafts(String owner);
+
+    /**
+     * 修改文章简介封面
+     *
+     * @param id
+     * @param cover
+     * @param title
+     * @param introduce
+     */
+    @Update("update synopsis set cover = #{cover},title = #{title},introduce = #{introduce},upd_date = now() where id = #{id}")
+    void updateSynopsis(Integer id, String cover, String title, String introduce);
+
+    /**
+     * 修改正文
+     * @param id
+     * @param content
+     */
+    @Update("update article_content set content = #{content} where id = #{id}")
+    void updateContent(Integer id,String content);
 }
