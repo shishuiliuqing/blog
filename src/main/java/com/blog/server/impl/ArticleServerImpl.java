@@ -115,6 +115,7 @@ public class ArticleServerImpl implements ArticleServer {
      * @param introduce
      * @param content
      */
+    @Transactional
     @Override
     public void update(Integer id, String cover, String title, String introduce, String content) {
         if (title == null) title = "";
