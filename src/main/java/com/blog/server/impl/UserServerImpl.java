@@ -41,6 +41,7 @@ public class UserServerImpl implements UserServer {
         Integer id = BaseUserInfo.getId();
         User user = userMapper.getUserById(id);
         user.setLv();
+        user.setSignature();
         return user;
     }
 
@@ -48,6 +49,7 @@ public class UserServerImpl implements UserServer {
     public User getByUsername(String username) {
         User user = userMapper.getByUsername(username);
         user.setLv();
+        user.setSignature();
         return user;
     }
 }

@@ -3,6 +3,7 @@ package com.blog.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +22,10 @@ public class User {
         int i;
         for (i = LV.length - 1; experience < LV[i]; i--) ;
         lv = i;
+    }
+
+    public void setSignature() {
+        if (Strings.isEmpty(signature))
+            signature = "这个用户很懒，什么也没写";
     }
 }
