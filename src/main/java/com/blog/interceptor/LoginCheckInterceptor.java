@@ -22,8 +22,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("请求url：{}", request.getRequestURL());
         //测试关闭拦截器
-        if (1 == 1)
-            return true;
+//        if (1 == 1)
+//            return true;
         //获取token
         String token = request.getHeader("token");
         //判断token是否为空
