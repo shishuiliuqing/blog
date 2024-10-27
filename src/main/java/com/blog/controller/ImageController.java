@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-@RequestMapping("images")
+@RequestMapping("/imageFiles")
 @CrossOrigin(origins = "*")
 public class ImageController {
     /**
