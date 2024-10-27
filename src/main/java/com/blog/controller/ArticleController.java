@@ -65,15 +65,21 @@ public class ArticleController {
 
     /**
      * 新建草稿
+     *
      * @return
      */
     @PostMapping("/createDraft")
     public Result createDraft() {
         log.info("新建草稿");
         Integer draftId = articleServer.createDraft();
-        return Result.success("新建成功",draftId);
+        return Result.success("新建成功", draftId);
     }
 
+    /**
+     * 获取当前用户所有草稿
+     *
+     * @return
+     */
     @GetMapping("/getDrafts")
     public Result getDrafts() {
         log.info("获取当前用户所有草稿");

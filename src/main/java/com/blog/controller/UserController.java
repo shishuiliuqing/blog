@@ -68,6 +68,11 @@ public class UserController {
         return Result.success(user);
     }
 
+    /**
+     * 根据用户名获取用户信息
+     * @param username
+     * @return
+     */
     @GetMapping("/getByUsername")
     public Result getByUsername(String username) {
         log.info("用户名为{}",username);
