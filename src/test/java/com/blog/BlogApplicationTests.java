@@ -9,15 +9,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
-@SpringBootTest
+//@SpringBootTest
 class BlogApplicationTests {
 
     @Test
     void contextLoads() throws IOException {
-        ImageUtil imageUtil = new ImageUtil();
-//        System.out.println(imageUtil.a());
+        ImageUtil.delete("http://localhost:8080/images/default.png");
     }
 
+    @Test
+    void test() throws IOException {
+//        ImageUtil.rollBack("http://localhost:8080/images/default.png");
+        ImageUtil.clearBin();
+    }
     @Test
     void a() {
         String s = JWTUtil.generateJWT(1,"hjc");
