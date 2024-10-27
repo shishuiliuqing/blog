@@ -68,5 +68,10 @@ public class UserController {
         return Result.success(user);
     }
 
-
+    @GetMapping("/getByUsername")
+    public Result getByUsername(String username) {
+        log.info("用户名为{}",username);
+        User user = userServer.getByUsername(username);
+        return Result.success(user);
+    }
 }

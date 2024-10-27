@@ -28,4 +28,11 @@ public interface UserServer {
      * @return
      */
     User getUser();
+
+    /**
+     * 根据用户名获取用户信息
+     * @param username
+     * @return
+     */
+    User getByUsername(String username);
 }

@@ -19,7 +19,7 @@ public class User {
 
     public void setLv() {
         int i;
-        for (i = LV.length - 1; experience >= LV[i]; i--) ;
+        for (i = LV.length - 1; experience < LV[i]; i--) ;
         lv = i;
     }
 }

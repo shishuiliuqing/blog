@@ -60,4 +60,13 @@ public interface UserMapper {
      */
     @Select("select username from user_login where id = #{result}")
     String getUsernameById(Integer result);
+
+    /**
+     * 根据用户名获取用户信息
+     *
+     * @param username
+     * @return
+     */
+    @Select("SELECT id, username, experience, profile_picture, signature from user")
+    User getByUsername(String username);
 }

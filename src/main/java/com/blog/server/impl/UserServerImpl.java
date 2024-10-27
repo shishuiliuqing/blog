@@ -43,4 +43,11 @@ public class UserServerImpl implements UserServer {
         user.setLv();
         return user;
     }
+
+    @Override
+    public User getByUsername(String username) {
+        User user = userMapper.getByUsername(username);
+        user.setLv();
+        return user;
+    }
 }
