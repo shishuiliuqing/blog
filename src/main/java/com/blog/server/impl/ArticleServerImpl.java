@@ -117,6 +117,10 @@ public class ArticleServerImpl implements ArticleServer {
      */
     @Override
     public void update(Integer id, String cover, String title, String introduce, String content) {
+        if (title == null) title = "";
+        if (cover == null) cover = "";
+        if (introduce == null) introduce = "";
+        if (content == null) content = "";
         articleMapper.updateSynopsis(id, cover, title, introduce);
         articleMapper.updateContent(id, content);
     }
