@@ -1,6 +1,7 @@
 package com.blog.utils;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 
+@Slf4j
 @Component
 public class ImageUtil {
     //图片存储地址
@@ -95,7 +97,7 @@ public class ImageUtil {
         if (files != null) {
             for (File file : files) {
                 if(file.delete()) {
-                    System.out.println(file.getName() + "删除成功");
+                    log.info("{}删除成功！",file.getName());
                 }
             }
         }
