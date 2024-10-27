@@ -76,7 +76,7 @@ public interface UserMapper {
      *
      * @param profilePicture
      */
-    @Update("update user set profile_picture = profile_picture where id = #{id}")
+    @Update("update user set profile_picture = #{profilePicture} where id = #{id}")
     void updateProfilePicture(Integer id, String profilePicture);
 
     /**
