@@ -29,4 +29,16 @@ public class ImageController {
             throw new RuntimeException(e);
         }
     }
+
+    @PostMapping("/delete")
+    public Result delete(String URL) {
+        log.info("删除图片URL：{}",URL);
+        try {
+            ImageUtil.delete(URL);
+            ImageUtil.clearBin();
+            return Result.success(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
