@@ -1,6 +1,7 @@
 package com.blog.controller;
 
 import com.blog.pojo.Article;
+import com.blog.pojo.Draft;
 import com.blog.pojo.Synopsis;
 import com.blog.pojo.Result;
 import com.blog.server.ArticleServer;
@@ -71,6 +72,13 @@ public class ArticleController {
         log.info("新建草稿");
         Integer draftId = articleServer.createDraft();
         return Result.success("新建成功",draftId);
+    }
+
+    @GetMapping("/getDrafts")
+    public Result getDrafts() {
+        log.info("获取当前用户所有草稿");
+        List<Draft> drafts = articleServer.getDrafts();
+        return Result.success(drafts);
     }
 
     /**

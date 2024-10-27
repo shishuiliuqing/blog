@@ -2,6 +2,7 @@ package com.blog.server.impl;
 
 import com.blog.mapper.ArticleMapper;
 import com.blog.pojo.Article;
+import com.blog.pojo.Draft;
 import com.blog.pojo.Synopsis;
 import com.blog.pojo.BaseUserInfo;
 import com.blog.server.ArticleServer;
@@ -9,9 +10,7 @@ import com.blog.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -93,5 +92,17 @@ public class ArticleServerImpl implements ArticleServer {
         Integer draftId = articleMapper.getNewId(owner);
         articleMapper.addContent(draftId, "");
         return draftId;
+    }
+
+    /**
+     * 获取当前用户所有草稿
+     *
+     * @return
+     */
+    @Override
+    public List<Draft> getDrafts() {
+        String owner = BaseUserInfo.getUsername();
+        List<Draft> drafts = articleMapper.getDrafts(owner);
+        return drafts;
     }
 }

@@ -1,6 +1,7 @@
 package com.blog.server;
 
 import com.blog.pojo.Article;
+import com.blog.pojo.Draft;
 import com.blog.pojo.Synopsis;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,4 +44,11 @@ public interface ArticleServer {
      * @return
      */
     Integer createDraft();
+
+    /**
+     * 获取当前用户所有草稿
+     *
+     * @return
+     */
+    List<Draft> getDrafts();
 }

@@ -1,5 +1,6 @@
 package com.blog.mapper;
 
+import com.blog.pojo.Draft;
 import com.blog.pojo.Synopsis;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -69,10 +70,19 @@ public interface ArticleMapper {
 
     /**
      * 根据id获取正文
+     *
      * @param id
      * @return
      */
     @Select("select content from article_content where id = #{id}")
     String getContentById(Integer id);
 
+    /**
+     * 获取用户未发布的所有文章草稿
+     *
+     * @param owner
+     * @return
+     */
+    @Select("select id, title, pub_date, upd_date from synopsis where owner = #{owner} and status = 0")
+    List<Draft> getDrafts(String owner);
 }
