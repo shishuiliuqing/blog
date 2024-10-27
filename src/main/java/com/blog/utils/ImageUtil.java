@@ -13,7 +13,7 @@ public class ImageUtil {
     public static  File FILE = new File("src\\main\\resources\\static\\images");
     public static String URL = "http://localhost:8080/images";
 
-    public String upload(MultipartFile image) throws IOException {
+    public static String upload(MultipartFile image) throws IOException {
         //获取图片存放位置路径
         String realPath = FILE.getCanonicalPath();
         //获取图片文件名字
