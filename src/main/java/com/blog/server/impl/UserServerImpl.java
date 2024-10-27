@@ -6,6 +6,7 @@ import com.blog.pojo.User;
 import com.blog.server.UserServer;
 import com.blog.utils.ImageUtil;
 import com.blog.utils.JWTUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 
 @Service
+@Slf4j
 public class UserServerImpl implements UserServer {
     @Autowired
     private UserMapper userMapper;
@@ -51,5 +53,35 @@ public class UserServerImpl implements UserServer {
         user.setLv();
         user.setSignature();
         return user;
+    }
+
+    @Transactional
+    @Override
+    public void updateProfilePicture(String profilePicture) {
+        Integer id = BaseUserInfo.getId();
+        //获取原头像
+        String imageURL = userMapper.getProfilePicture(id);
+        try {
+            //替换新头像
+            userMapper.updateProfilePicture(id, profilePicture);
+            //删除原来头像
+            if(!imageURL.contains(ImageUtil.DEFAULT)) {
+                //删除图片
+                ImageUtil.delete(imageURL);
+            }
+        } catch (Exception e) {
+            try {
+                //事务回滚
+                ImageUtil.rollBack(imageURL);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } finally {
+            try {
+                ImageUtil.clearBin();
+            } catch (IOException e) {
+                log.info("回收站删除出错！请检查回收站情况！");
+            }
+        }
     }
 }

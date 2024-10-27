@@ -35,4 +35,11 @@ public interface UserServer {
      * @return
      */
     User getByUsername(String username);
+
+
+    /**
+     * 修改用户头像
+     * @param profilePicture
+     */
+    void updateProfilePicture(String profilePicture);
 }

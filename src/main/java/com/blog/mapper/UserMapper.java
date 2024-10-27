@@ -4,6 +4,7 @@ import com.blog.pojo.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserMapper {
@@ -69,4 +70,21 @@ public interface UserMapper {
      */
     @Select("SELECT id, username, experience, profile_picture, signature from user")
     User getByUsername(String username);
+
+    /**
+     * 修改用户头像url
+     *
+     * @param profilePicture
+     */
+    @Update("update user set profile_picture = profile_picture where id = #{id}")
+    void updateProfilePicture(Integer id, String profilePicture);
+
+    /**
+     * 获取用户头像
+     *
+     * @param id
+     * @return
+     */
+    @Select("select profile_picture from user where id = #{id}")
+    String getProfilePicture(Integer id);
 }

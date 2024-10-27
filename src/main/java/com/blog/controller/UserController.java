@@ -70,13 +70,26 @@ public class UserController {
 
     /**
      * 根据用户名获取用户信息
+     *
      * @param username
      * @return
      */
     @GetMapping("/getByUsername")
     public Result getByUsername(String username) {
-        log.info("用户名为{}",username);
+        log.info("用户名为{}", username);
         User user = userServer.getByUsername(username);
         return Result.success(user);
+    }
+
+    /**
+     * 修改用户头像
+     *
+     * @param profilePicture
+     * @return
+     */
+    @PostMapping("/updateProfilePicture")
+    public Result updateProfilePicture(String profilePicture) {
+        userServer.updateProfilePicture(profilePicture);
+        return Result.success("头像修改成功！", null);
     }
 }

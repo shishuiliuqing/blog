@@ -12,9 +12,14 @@ import java.util.UUID;
 
 @Component
 public class ImageUtil {
+    //图片存储地址
     public static File IMAGES = new File("src\\main\\resources\\static\\images");
+    //回收站存储地址
     public static File RECYCLE_BIN = new File("src\\main\\resources\\static\\recycle_bin");
+    //url映射地址
     public static String URL = "http://localhost:8080/images";
+    //默认用户头像
+    public static String DEFAULT = "default.png";
 
     /**
      * 将文件存储在本地后生成URL
