@@ -7,13 +7,13 @@ import com.blog.pojo.Synopsis;
 import java.util.List;
 
 public interface ArticleServer {
-//    /**
-//     * 添加文章
-//     * @param cover
-//     * @param title
-//     * @param introduce
-//     */
-//    void addArticle(MultipartFile cover, String title, String introduce,String content);
+    /**
+     * 添加文章
+     * @param cover
+     * @param title
+     * @param introduce
+     */
+    void addArticle(String cover, String title, String introduce,String content);
 
 
     /**
@@ -40,12 +40,12 @@ public interface ArticleServer {
      */
     List<Synopsis> getByUsername(String username);
 
-    /**
-     * 新建草稿
-     *
-     * @return
-     */
-    Integer createDraft();
+//    /**
+//     * 新建草稿
+//     *
+//     * @return
+//     */
+//    Integer createDraft();
 
     /**
      * 获取当前用户所有草稿

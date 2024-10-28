@@ -8,7 +8,6 @@ import com.blog.server.ArticleServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -48,32 +47,32 @@ public class ArticleController {
     }
 
 
-//    /**
-//     * 添加文章
-//     *
-//     * @param cover
-//     * @param title
-//     * @param introduce
-//     * @return
-//     */
-//    @PostMapping
-//    public Result addArticle(MultipartFile cover, String title, String introduce,String content) {
-//        articleServer.addArticle(cover, title, introduce,content);
-//        return Result.success("发布成功",null);
-//    }
-
-
     /**
-     * 新建草稿
+     * 添加文章
      *
+     * @param cover
+     * @param title
+     * @param introduce
      * @return
      */
-    @PostMapping("/createDraft")
-    public Result createDraft() {
-        log.info("新建草稿");
-        Integer draftId = articleServer.createDraft();
-        return Result.success("新建成功", draftId);
+    @PostMapping
+    public Result addArticle(String cover, String title, String introduce,String content) {
+        articleServer.addArticle(cover, title, introduce,content);
+        return Result.success("发布成功",null);
     }
+
+
+//    /**
+//     * 新建草稿
+//     *
+//     * @return
+//     */
+//    @PostMapping("/createDraft")
+//    public Result createDraft() {
+//        log.info("新建草稿");
+//        Integer draftId = articleServer.createDraft();
+//        return Result.success("新建成功", draftId);
+//    }
 
     /**
      * 获取当前用户所有草稿

@@ -21,26 +21,22 @@ public class ArticleServerImpl implements ArticleServer {
     @Autowired
     private ImageUtil imageUtil;
 
-//    /**
-//     * 添加文章
-//     *
-//     * @param cover
-//     * @param title
-//     * @param introduce
-//     * @param content
-//     */
-//    @Transactional
-//    @Override
-//    public void addArticle(MultipartFile cover, String title, String introduce, String content) {
-//        try {
-//            String owner = BaseUserInfo.getUsername();
-//            articleMapper.addSynopsis(imageUtil.upload(cover), title, introduce, owner);
-//            Integer id = articleMapper.getNewId(owner);
-//            articleMapper.addContent(id, content);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    /**
+     * 添加文章
+     *
+     * @param cover
+     * @param title
+     * @param introduce
+     * @param content
+     */
+    @Transactional
+    @Override
+    public void addArticle(String cover, String title, String introduce, String content) {
+        String owner = BaseUserInfo.getUsername();
+        articleMapper.addSynopsis(cover, title, introduce, owner);
+        Integer id = articleMapper.getNewId(owner);
+        articleMapper.addContent(id, content);
+    }
 
     /**
      * 根据id获取文章
@@ -79,20 +75,20 @@ public class ArticleServerImpl implements ArticleServer {
     }
 
 
-    /**
-     * 新建草稿
-     *
-     * @return
-     */
-    @Transactional
-    @Override
-    public Integer createDraft() {
-        String owner = BaseUserInfo.getUsername();
-        articleMapper.addSynopsis("", "未命名", "", owner);
-        Integer draftId = articleMapper.getNewId(owner);
-        articleMapper.addContent(draftId, "");
-        return draftId;
-    }
+//    /**
+//     * 新建草稿
+//     *
+//     * @return
+//     */
+//    @Transactional
+//    @Override
+//    public Integer createDraft() {
+//        String owner = BaseUserInfo.getUsername();
+//        articleMapper.addSynopsis("", "未命名", "", owner);
+//        Integer draftId = articleMapper.getNewId(owner);
+//        articleMapper.addContent(draftId, "");
+//        return draftId;
+//    }
 
     /**
      * 获取当前用户所有草稿
