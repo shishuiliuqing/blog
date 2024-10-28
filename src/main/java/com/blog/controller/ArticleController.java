@@ -58,7 +58,7 @@ public class ArticleController {
     @PostMapping
     public Result addArticle(String cover, String title, String introduce,String content) {
         articleServer.addArticle(cover, title, introduce,content);
-        return Result.success("发布成功",null);
+        return Result.success("保存成功",null);
     }
 
 
@@ -102,7 +102,7 @@ public class ArticleController {
     public Result release(@PathVariable Integer id){
         log.info("发布文章ID：{}",id);
         articleServer.release(id);
-        return Result.success("文章发布成功",null);
+        return Result.success("发布成功",null);
     };
 
     /**
