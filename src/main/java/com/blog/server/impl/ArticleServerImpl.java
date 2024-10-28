@@ -7,6 +7,7 @@ import com.blog.pojo.Synopsis;
 import com.blog.pojo.BaseUserInfo;
 import com.blog.server.ArticleServer;
 import com.blog.utils.ImageUtil;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,9 @@ public class ArticleServerImpl implements ArticleServer {
     @Override
     public void addArticle(String cover, String title, String introduce, String content) {
         String owner = BaseUserInfo.getUsername();
+        if(Strings.isEmpty(title)) title = "未命名";
+        if(Strings.isEmpty(introduce)) introduce = "这个用户很懒！没写简介";
+        if(Strings.isEmpty(content)) content = "";
         articleMapper.addSynopsis(cover, title, introduce, owner);
         Integer id = articleMapper.getNewId(owner);
         articleMapper.addContent(id, content);
