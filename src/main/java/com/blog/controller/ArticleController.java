@@ -56,9 +56,9 @@ public class ArticleController {
      * @return
      */
     @PostMapping
-    public Result addArticle(String cover, String title, String introduce,String content) {
-        articleServer.addArticle(cover, title, introduce,content);
-        return Result.success("保存成功",null);
+    public Result addArticle(String cover, String title, String introduce, String content) {
+        articleServer.addArticle(cover, title, introduce, content);
+        return Result.success("保存成功", null);
     }
 
 
@@ -91,19 +91,21 @@ public class ArticleController {
      *
      * @return
      */
-    @PostMapping("/update")
-    public Result update(Integer id, String cover, String title, String introduce, String content) {
+    @PostMapping("/{id}")
+    public Result update(@PathVariable Integer id, String cover, String title, String introduce, String content) {
         log.info("cover:{}\ntitle:{}\nintroduce{}\ncontent{}", cover, title, introduce, content);
         articleServer.update(id, cover, title, introduce, content);
         return Result.success("修改保存成功", null);
     }
 
     @PostMapping("/release/{id}")
-    public Result release(@PathVariable Integer id){
-        log.info("发布文章ID：{}",id);
+    public Result release(@PathVariable Integer id) {
+        log.info("发布文章ID：{}", id);
         articleServer.release(id);
-        return Result.success("发布成功",null);
-    };
+        return Result.success("发布成功", null);
+    }
+
+    ;
 
     /**
      * 根据用户名获取文章
